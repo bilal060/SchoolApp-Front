@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Container} from '../../../containers';
 import {CPagination, CText, ProgressiveImage} from '../../../components';
 import {useDispatch, useSelector} from 'react-redux';
@@ -10,10 +10,13 @@ import {Facebook, Google} from '../../../assets/images';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import { login } from '../../../redux/actions/Auth.action';
 const {width, height} = Dimensions.get('screen')
+import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics'
 
 function Login({route}) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const rnBiometrics = new ReactNativeBiometrics({ allowDeviceCredentials: true })
+
 
   const reduxState = useSelector(({auth, global}) => {
     return {
@@ -30,6 +33,36 @@ function Login({route}) {
   const submit = async values => {
     dispatch(login())
   };
+  useEffect(async() => {
+    rnBiometrics.isSensorAvailable()
+  .then((resultObject) => {
+    const { available, biometryType } = resultObject
+
+    if (available && biometryType === BiometryTypes.TouchID) {
+      console.log('TouchID is supported')
+    } else if (available && biometryType === BiometryTypes.FaceID) {
+      console.log('FaceID is supported')
+    } else if (available && biometryType === BiometryTypes.Biometrics) {
+      console.log('Biometrics is supported')
+    } else {
+      console.log('Biometrics not supported')
+    }
+  })
+  rnBiometrics.simplePrompt({promptMessage: 'Confirm fingerprint'})
+  .then((resultObject) => {
+    const { success } = resultObject
+
+    if (success) {
+      console.log('successful biometrics provided')
+    } else {
+      console.log('user cancelled biometric prompt')
+    }
+  })
+  .catch(() => {
+    console.log('biometrics failed')
+  })
+
+  }, []);
 
   return (
     <Container

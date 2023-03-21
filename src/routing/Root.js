@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { TabBar } from "../containers";
 import {Home} from '../pages/Protected'
-import ServiceTab from './Stacks/Services'
 
 const Tab = createBottomTabNavigator();
 
