@@ -2,9 +2,10 @@ import React, {useRef, memo} from 'react';
 import {Formik} from 'formik';
 import Validations from './Validations';
 import {View , TouchableOpacity} from 'react-native';
-import {CButton, CInput, CText} from '../../../components';
+import {CButton, CheckBox, CInput, CText, RadioButton} from '../../../components';
 import AuthStyle from '../Auth.style';
 import {themes} from '../../../theme/colors';
+import ToggleSwitch from '../../../components/cToggleSwitch/CToggleSwitch';
 
 function CForm(props) {
   const {submit, loading , onForgotPress} = props;
@@ -22,6 +23,7 @@ function CForm(props) {
       initialValues={{}}
       validationSchema={Validations}>
       {({handleChange, values, handleSubmit, errors}) => {
+        
         return (
           <View>
             <View style={AuthStyle.card}>
@@ -30,14 +32,16 @@ function CForm(props) {
                   {'Welcome Back!'}
                 </CText>
                 <CText style={AuthStyle.cardHeaderSubTitle}>
-                  {'Sign in to continue'}
+                  {'Login to your account'}
                 </CText>
               </View>
 
               <View style={AuthStyle.cardBody}>
+             
+                
                 <CInput
                   ref={email}
-                  inputLabel={'Email_address'}
+                  // inputLabel={'Email_address'}
                   placeholder={'Email Address'}
                   value={values.email}
                   onChangeText={handleChange('email')}
@@ -53,7 +57,7 @@ function CForm(props) {
 
                 <CInput
                   ref={password}
-                  inputLabel={'Password'}
+                  // inputLabel={'Password'}
                   placeholder={'Password'}
                   value={values.password}
                   onChangeText={handleChange('password')}
@@ -71,20 +75,21 @@ function CForm(props) {
                   rightIconeSize={18}
                 />
               </View>
-              <TouchableOpacity onPress={onForgotPress} style={AuthStyle.forgot}>
-                <CText style={AuthStyle.forgotText}>Forgot password?</CText>
-              </TouchableOpacity>
+              <View style={{marginTop:-25 , marginRight:40}}>
+                <ToggleSwitch  size="small" label="Save my Information for next time" isOn={true} />
+                {/* <CText style={AuthStyle.continueText}>Or continue with</CText> */}
+              </View>
               <CButton
                 title={'Sign In'}
-                iconType="left"
+                iconType=""
                 loading={loading}
                 onPress={() => handleSubmit()}
               />
 
-              <View>
-                <CText style={AuthStyle.continueText}>Or continue with</CText>
-              </View>
-
+              
+              <TouchableOpacity onPress={onForgotPress} style={AuthStyle.forgot}>
+                <CText style={AuthStyle.forgotText}>Forgot password?</CText>
+              </TouchableOpacity>
             
             </View>
           </View>

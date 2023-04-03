@@ -11,6 +11,10 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import { login } from '../../../redux/actions/Auth.action';
 const {width, height} = Dimensions.get('screen')
 import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics'
+import { Alert } from 'react-native/Libraries/Alert/Alert';
+import LocalAuthentication from 'react-native-local-authentication';
+import DeviceInfo from 'react-native-device-info';
+
 
 function Login({route}) {
   const navigation = useNavigation();
@@ -31,9 +35,16 @@ function Login({route}) {
   };
 
   const submit = async values => {
-    dispatch(login())
+    if(values.email === "student1@yopmail.com"  && values.password === "11223344"){
+      
+      dispatch(login()) 
+    } else {
+      alert("Please Enter Valid Email Password")
+    }
+
   };
   useEffect(async() => {
+ 
     rnBiometrics.isSensorAvailable()
   .then((resultObject) => {
     const { available, biometryType } = resultObject
@@ -41,28 +52,20 @@ function Login({route}) {
     if (available && biometryType === BiometryTypes.TouchID) {
       console.log('TouchID is supported')
     } else if (available && biometryType === BiometryTypes.FaceID) {
-      console.log('FaceID is supported')
+      console.log('FaceID is supported' )
     } else if (available && biometryType === BiometryTypes.Biometrics) {
-      console.log('Biometrics is supported')
+      console.log('Biometrics is supported' , BiometryTypes.FaceID)
     } else {
       console.log('Biometrics not supported')
     }
   })
-  rnBiometrics.simplePrompt({promptMessage: 'Confirm fingerprint'})
-  .then((resultObject) => {
-    const { success } = resultObject
 
-    if (success) {
-      console.log('successful biometrics provided')
-    } else {
-      console.log('user cancelled biometric prompt')
-    }
-  })
-  .catch(() => {
-    console.log('biometrics failed')
-  })
+ 
 
   }, []);
+
+ 
+  
 
   return (
     <Container
@@ -77,23 +80,14 @@ function Login({route}) {
       }}>
         
       <CForm submit={submit} loading={reduxState?.loading} onForgotPress={()=> navigation.navigate('Forgot')} />
+      
       <View style={AuthStyle.orContainer}>
-        <ProgressiveImage
-          source={Google}
-          resizeMode={'contain'}
-          style={AuthStyle.IconImage}
-        />
-        <ProgressiveImage
-          source={Facebook}
-          resizeMode={'contain'}
-          style={AuthStyle.IconImage}
-        />
-      </View>
-      <View style={AuthStyle.orContainer}>
-        <CText style={AuthStyle.cardBottomText}>New to School?</CText>
-        <CText onPress={()=> navigation.navigate('Register')} style={[AuthStyle.cardBottomText2]}>Sign Up</CText>
+        <CText style={AuthStyle.cardBottomText}>Don’t have an account?</CText>
+        <CText onPress={()=> navigation.navigate('Information')} style={[AuthStyle.cardBottomText2]}>Register</CText>
       </View>
     </Container>
   );
 }
 export default Login;
+
+

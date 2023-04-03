@@ -29,11 +29,13 @@ export default StyleSheet.create({
     },
     inputStyle: {
         fontSize: 16,
-        color: themes.light.colors.gray1,
-
-        // fontFamily: themes.font.regular,
+        borderColor:themes.light.colors.gray1,
+        borderWidth:1,
+        paddingHorizontal:10,
+        color:themes.light.colors.dark,
+        fontFamily: themes.font.regular,
         flex: 1,
-        height:60,
+        height:50,
         // paddingHorizontal: 0,
         // minHeight: 30,
     },
@@ -187,6 +189,11 @@ export default StyleSheet.create({
         borderRadius: 10,
         marginTop: 20
     },
+    row:{
+        flexDirection:"row",
+        alignItems:"center",
+        marginTop:5
+    },
     listItemIconContainer: {},
     listItemIcon: {},
     listItemText: {
@@ -298,7 +305,9 @@ export default StyleSheet.create({
     listItemActions: {
         flexDirection: 'row',
         alignItems: 'center',
-        height: 60,
+        height: 50,
+        marginVertical:20,
+        marginHorizontal:20,
     },
     listItemActionButton: {
         padding: 5,

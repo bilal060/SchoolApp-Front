@@ -47,11 +47,11 @@ const CButton = props => {
         {
           backgroundColor:
             type === 'without_outline'
-              ? 'transparent'
+              ? 'rgba(37, 99, 235, 0.1)'
               : themes['light'].colors[backgroundColor],
           borderColor:
             type === 'without_outline'
-              ? 'transparent'
+              ? themes['light'].colors[borderColor] 
               : themes['light'].colors[borderColor],
         },
         (disabled || loading) && {opacity: 0.5},
@@ -78,15 +78,7 @@ const CButton = props => {
       ) : (
         children
       )}
-      {iconType === 'left' && (
-        <CIcon
-          name={'arrow-right'}
-          type={'Feather'}
-          size={iconSize}
-          color={iconColor}
-          styles={iconStyle}
-        />
-      )}
+     
       {loading ? (
         <ActivityIndicator {...loaderProps} style={{marginLeft: 10}} />
       ) : null}

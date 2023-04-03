@@ -4,7 +4,7 @@ import {CLoading} from '../components';
 import {createStackNavigator} from '@react-navigation/stack';
 import {getValueIntoAsyncStorage} from '../utils/asyncStorage/Functions';
 import {WELCOME_SCREEN} from '../utils/asyncStorage/Constants';
-import {ChangePassword, Forgot, Login, Register} from '../pages/Auth';
+import {ChangePassword, Forgot, Login, Otp, Register , Information, Confirm, Authentication, FaceDetect} from '../pages/Auth';
 
 export const Stack = createStackNavigator();
 
@@ -38,6 +38,13 @@ function Auth({initial}) {
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="Forgot" component={Forgot} />
+          <Stack.Screen name="OTP" component={Otp} />
+          <Stack.Screen name="Information" component={Information} />
+          <Stack.Screen name="Confirm" component={Confirm} />
+          <Stack.Screen name="Authentication" component={Authentication} />
+          <Stack.Screen name="FaceDetect" component={FaceDetect} />
+
+
           <Stack.Screen name="ChangePassword" component={ChangePassword} />
         </Stack.Navigator>
       );

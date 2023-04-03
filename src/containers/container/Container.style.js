@@ -4,7 +4,7 @@ import {themes as theme, themes} from "../../theme/colors";
 export default StyleSheet.create({
     background: {
         position: 'relative',
-        backgroundColor: theme['light'].colors.tertiary,
+        backgroundColor: theme['light'].colors.danger,
         overflow: 'hidden',
         flex: 1
     },

@@ -1,8 +1,8 @@
-import React from 'react';
-import {Container} from '../../../containers';
+import React, { useState } from 'react';
+import {Container, CountriesModal} from '../../../containers';
 import {CPagination, CText, ProgressiveImage} from '../../../components';
 import {useDispatch, useSelector} from 'react-redux';
-import {Dimensions, View} from 'react-native';
+import {Dimensions, View , Modal} from 'react-native';
 import AuthStyle from '../Auth.style';
 import CForm from './Form';
 import {useNavigation} from '@react-navigation/native';
@@ -15,10 +15,43 @@ function Register({route}) {
   const dispatch = useDispatch();
 
   const reduxState = useSelector(({auth, global}) => {
+    console.log("🚀 ~ file: index.js:18 ~ reduxState ~ reduxState:", reduxState)
     return {
       loading: auth.signUpLoading,
+      currentCountry: global.currentCountry,
+      countries: global.countries,
     };
   });
+
+
+  const [countryModalIsOpen, updateCountryModalIsOpen] = useState(false);
+  const [selectedCountry, updateSelectedCountry] = useState(
+      reduxState.currentCountry
+  );
+  console.log("🚀 ~ file: index.js:30 ~ Register ~ selectedCountry:", selectedCountry)
+
+  const toggleCountryModal = () => {
+      updateCountryModalIsOpen(!countryModalIsOpen);
+  };
+
+  const countryOnSelect = (item) => {
+      updateSelectedCountry(item);
+      toggleCountryModal();
+  };
+
+  // const submit = async (values) => {
+  //     // setPhoneError("");
+  //     let perifix = `${selectedCountry?.idd?.root}${
+  //         selectedCountry?.idd?.suffixes?.length > 1
+  //             ? ""
+  //             : selectedCountry?.idd?.suffixes[0]
+  //     }`;
+  //     let payload = _.omit(values, ["phone"]);
+  //     payload.phone =  selectedCountry.detail.code+values.phone;
+ 
+  // };
+
+
   const headerProps = {
     showCenterLogo: false,
     headerLeft: true,
@@ -26,7 +59,11 @@ function Register({route}) {
     bgHeadeStyle:{width: width * 1, height: height * 0.3, marginTop: -30, paddingVertical: 40, paddingHorizontal: 20}
   };
 
-  const submit = async values => {};
+  const submit = async values => {
+    // alert("sss")
+    navigation.navigate('OTP')
+  };
+
 
   return (
     <Container
@@ -40,8 +77,10 @@ function Register({route}) {
         contentContainerStyle: AuthStyle.container,
       }}>
         
-      <CForm submit={submit} loading={reduxState?.loading} />
-      <View style={AuthStyle.orContainer}>
+      <CForm submit={submit} loading={reduxState?.loading} selectedCountry={selectedCountry}
+                toggleCountryModal={toggleCountryModal}
+                />
+      {/* <View style={AuthStyle.orContainer}>
         <ProgressiveImage
           source={Google}
           resizeMode={'contain'}
@@ -52,11 +91,12 @@ function Register({route}) {
           resizeMode={'contain'}
           style={AuthStyle.IconImage}
         />
-      </View>
+      </View> */}
       <View style={AuthStyle.orContainer}>
         <CText style={AuthStyle.cardBottomText}>Already have an account? </CText>
-        <CText onPress={()=> navigation.navigate('Login')} style={[AuthStyle.cardBottomText2]}>Sign in</CText>
+        <CText onPress={()=> navigation.navigate('Login')} style={[AuthStyle.cardBottomText2]}>Login</CText>
       </View>
+      
     </Container>
   );
 }

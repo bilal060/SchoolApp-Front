@@ -5,24 +5,18 @@ export default StyleSheet.create({
     buttonStyle: {
         borderColor: theme['light'].colors.primary,
         borderWidth: 1,
-        paddingHorizontal:35,
         backgroundColor: theme['light'].colors.primary,
-        padding: 5,
-        justifyContent: 'space-between',
         alignItems: 'center',
-        // borderRadius: 10,
-        borderTopEndRadius:10,
-        borderBottomStartRadius:10,
-        position: 'relative',
-        height: 60,
-        flexDirection: 'row',
+        borderRadius: 10,
+       justifyContent:'center',
+        height: 50,
         
     },
     buttonText: {
         color: theme['light'].colors.tertiary,
-        fontSize: 14,
+        fontSize: 18,
         
-        fontFamily: themes.font.regular,
+        fontFamily: themes.font.medium,
     },
     buttonIcon: {
         color: theme['light'].colors.secondary,

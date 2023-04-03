@@ -20,7 +20,7 @@ LogBox.ignoreAllLogs();
 
 const theme = {
     colors: {
-        background: themes.light.colors.backgroundColor,
+        background: themes.light.colors.tertiary,
     },
 };
 

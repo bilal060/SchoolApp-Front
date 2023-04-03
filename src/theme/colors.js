@@ -1,12 +1,19 @@
 export const themes = {
     font: {
-        black: 'Inter-Black',
-        bold: 'Inter-Bold',
-        regular: 'Inter-Regular',
-        light: 'Inter-Light',
-        extraLight: 'Inter-ExtraLight',
-        medium: 'Inter-Medium',
-        semiBold: 'Inter-SemiBold',
+        // black: 'Inter-Black',
+        // bold: 'Inter-Bold',
+        // regular: 'Inter-Regular',
+        // light: 'Inter-Light',
+        // extraLight: 'Inter-ExtraLight',
+        // medium: 'Inter-Medium',
+        // semiBold: 'Inter-SemiBold',
+        black: 'ClashDisplay-Variable',
+        bold: 'ClashDisplay-Bold',
+        regular: 'ClashDisplay-Regular',
+        light: 'ClashDisplay-Light',
+        extraLight: 'ClashDisplay-Extralight',
+        medium: 'ClashDisplay-Medium',
+        semiBold: 'ClashDisplay-Semibold',
     },
    
     light: {
@@ -14,7 +21,7 @@ export const themes = {
             
 
             primary: '#2563EB',
-            secondary: '#BCD9AE',
+            secondary: '#0243EC',
             
             secondary3: '#E3E3E0',
             secondary2: 'rgba(0, 89, 247, 0.38)',
@@ -25,10 +32,12 @@ export const themes = {
             lightenGray: '#868E96',
             fontColor: '#2563EB',
             fontLowColor: '#212820',
+            fontSecondaryColor: '#23C133',
+
 
             // secondary3: '#374D76',
-            secondary4: '#EFF5FE',
-            secondary5: '#3640B7',
+            secondary4: '#C8C8C8',
+            secondary5: '#EFEFEF',
             secondary6: '#ADC9FB',
             secondary7: '#E1F5FE',
             secondary8: '#2673FC',
@@ -39,8 +48,8 @@ export const themes = {
             secondary2dark:'#797A74',
             secondary3dark:'#20271F',
 
-            gray1: '#737373',
-            gray2: '#E2E2E2',
+            gray1: '#8B8B8B',
+            gray2: '#A3A3A3',
             gray3: '#D8D7D5',
             gray4: '#D4D4D4',
             gray6: 'rgba(229, 240, 253, 0.41)',

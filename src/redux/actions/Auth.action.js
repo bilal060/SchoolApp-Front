@@ -45,3 +45,38 @@ export const login = (payload, CB) => async (dispatch) => {
        
     }
 };
+
+export const logout = (payload, CB) => async (dispatch) => {
+    
+    console.log(
+        "🚀 ~ file: Auth.action.js ~ line 17 ~ login ~ payload",
+        payload
+    );
+
+    // dispatch({ type: AUTH.LOGIN_USER_API, loading: false,});
+    
+    dispatch({ type: AUTH.LOGIN_USER_API, loading: true, isLoggedIn: false});
+
+    try {
+        // let response = await post(LOGIN, payload);
+        // if (response?.data?.error) {
+        //     dispatch({ type: AUTH.LOGIN_USER_API, loading: false });
+        //     handleError(response?.data?.data?.message || "");
+        // } else {
+        //     await _setDataToAsyncStorage(TOKEN, response?.data?.data?.token);
+        //     await getTokenAndSetIntoHeaders(response?.data?.data?.token);
+        //     dispatch({
+        //         type: AUTH.LOGIN_USER_API,
+        //         loading: false,
+        //         user: response?.data,
+        //         isLoggedIn: true,
+        //     });
+        // }
+       
+    } catch (error) {
+        console.log("🚀 ~ file: Auth.action.js ~ line 42 ~ login ~ error", error)
+        handleError(error?.data?.error, { autoHide: false });
+        dispatch({ type: AUTH.LOGIN_USER_API, loading: false });
+       
+    }
+};

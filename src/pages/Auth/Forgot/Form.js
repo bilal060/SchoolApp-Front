@@ -27,17 +27,17 @@ function CForm(props) {
             <View style={AuthStyle.card}>
               <View style={AuthStyle.cardHeader}>
                 <CText style={AuthStyle.cardHeaderTitle}>
-                Forgot your password
+                Forgot  Password
                 </CText>
                 <CText style={AuthStyle.cardHeaderSubTitle}>
-                Enter your email address and we will send you a link to reset your password
+                Happens to the best of us!
                 </CText>
               </View>
 
               <View style={AuthStyle.cardBody}>
                 <CInput
                   ref={email}
-                  inputLabel={'Email_address'}
+                  // inputLabel={'Email_address'}
                   placeholder={'Email Address'}
                   value={values.email}
                   onChangeText={handleChange('email')}
@@ -55,8 +55,8 @@ function CForm(props) {
               </View>
 
               <CButton
-                title={'Send Password Reset Link'}
-                iconType="left"
+                title={'Recover'}
+                iconType=""
                 loading={loading}
                 onPress={() => handleSubmit()}
               />

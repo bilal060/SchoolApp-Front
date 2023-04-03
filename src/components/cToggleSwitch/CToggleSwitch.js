@@ -44,7 +44,7 @@ export default class ToggleSwitch extends React.Component {
   static defaultProps = {
     isOn: false,
     onColor: theme['light'].colors.secondary,
-    offColor: "#CFCFCF",
+    offColor: "#0243EC",
     size: "medium",
     labelStyle: {},
     thumbOnStyle: {},
@@ -150,12 +150,15 @@ export default class ToggleSwitch extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
+    flexDirection: "row-reverse",
     alignItems: "center",
+
     marginBottom: 30
   },
   labelStyle: {
-    // marginHorizontal: 10,
-    marginBottom: 0
-  },
+    fontSize:12,
+    marginHorizontal: 10,
+    marginBottom: 0,
+    color:"#11151F",
+    fontFamily:theme.font.medium,  },
 });

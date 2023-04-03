@@ -16,6 +16,8 @@ import CCheckBox from "./cCheckBox/CCheckBox";
 import CIcon from "./cIcon/CIcon";
 import CPagination from "./cPagination/CPagination";
 import RadioButton from "./radioButton/RadioButton";
+import CDropDown from "./CDropDown";
+
 
 
 
@@ -38,5 +40,6 @@ export {
     CCheckBox,
     CIcon,
     RadioButton,
-    CPagination
+    CPagination,
+    CDropDown
 }

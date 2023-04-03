@@ -38,7 +38,7 @@ function Container(props) {
 
   const getBackgroundColor = () => {
     if (backgroundColor === 'theme-color') {
-      return theme['light'].colors.secondary;
+      return theme['light'].colors.danger;
     } else {
       return theme['light'].colors.tertiary;
     }
@@ -62,7 +62,7 @@ function Container(props) {
         edges={getEdges()}
         style={[Styles.backgroundContainer, SafeAreaViewStyle]}>
         <CLoading loading={loading} />
-        <View style={{flex: 1}}>
+        <View style={{flex: 1 ,}}>
           {scrollView ? (
             <ScrollView {...scrollViewProps} scrollEventThrottle={16}>
               {children}
@@ -76,3 +76,4 @@ function Container(props) {
   );
 }
 export default memo(Container);
+

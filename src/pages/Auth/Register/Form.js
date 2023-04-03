@@ -7,10 +7,19 @@ import AuthStyle from '../Auth.style';
 import {themes} from '../../../theme/colors';
 
 function CForm(props) {
-  const {submit, loading} = props;
+  const {
+    submit,
+    loading,
+    selectedCountry,
+    toggleCountryModal,
+    phoneErr,
+    onLoginPress,
+    onGooglePress,
+    onFacebookPress
+} = props;
 
   const form = useRef(null);
-  const fullName = useRef(null);
+  const phone = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
   const cpassword = useRef(null);
@@ -27,17 +36,17 @@ function CForm(props) {
             <View style={AuthStyle.card}>
               <View style={AuthStyle.cardHeader}>
                 <CText style={AuthStyle.cardHeaderTitle}>
-                  Hello, Welcome to UNIHUB!
+                Register
                 </CText>
                 <CText style={AuthStyle.cardHeaderSubTitle}>
-                  Create your UNIHUB store account
+                Create your new account.
                 </CText>
               </View>
 
               <View style={AuthStyle.cardBody}>
                 <CInput
                   ref={email}
-                  inputLabel={'Email_address'}
+                  // inputLabel={'Email_address'}
                   placeholder={'Email Address'}
                   value={values.email}
                   onChangeText={handleChange('email')}
@@ -50,38 +59,19 @@ function CForm(props) {
                   returnKeyType="next"
                   onSubmitEditing={() => handleSubmit()}
                 />
+             
 
-                <CInput
-                  ref={password}
-                  inputLabel={'Password'}
-                  placeholder={'Password'}
-                  value={values.password}
-                  onChangeText={handleChange('password')}
-                  secureTextEntry={true}
-                  error={errors.password}
-                  returnKeyType="next"
-                  onSubmitEditing={() => cpassword.current.focus()}
-                  leftIconType="MaterialCommunityIcons"
-                  leftIconColor={themes.light.colors.fontColor}
-                  leftIconNAme="email"
-                  leftIconeSize={18}
-                  rightIconType="AntDesign"
-                  rightIconName="eyeo"
-                  rightIconeColor={themes.light.colors.gray4}
-                  rightIconeSize={18}
-                />
+                
               </View>
 
               <CButton
-                title={'Sign up'}
+                title={'Register'}
                 iconType="left"
                 loading={loading}
                 onPress={() => handleSubmit()}
               />
 
-              <View>
-                <CText style={AuthStyle.continueText}>Or continue with</CText>
-              </View>
+             
             </View>
           </View>
         );

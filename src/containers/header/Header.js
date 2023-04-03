@@ -34,6 +34,8 @@ const Header = props => {
     bgHeadeStyle,
     transparent,
     backBtnColor,
+    rightTitle="Skip",
+    rightTextShow=false
   } = props;
   const navigation = useNavigation()
 
@@ -51,10 +53,10 @@ const Header = props => {
         style={GlobalStyle.logostyles}
         onPress={() => backPress()}>
         <CIcon
-          type="MaterialIcons"
-          name="arrow-back"
-          color={backBtnColor || theme.light.colors.backgroundColor}
-          size={30}
+          type="AntDesign"
+          name="left"
+          color={backBtnColor || theme.light.colors.dark}
+          size={22}
         />
       </TouchableOpacity>
     ) : null;
@@ -82,25 +84,11 @@ const Header = props => {
       </View>
     );
   };
-  const cartButton = () => {
+  const rightText = () => {
     return (
-      <TouchableOpacity
-        style={[
-          styles.headerCartButton,
-          theme === 'light' && styles.headerCartLight,
-        ]}
-        // onPress={() => navigation.navigate('Cart')}
-      >
-        {  true > 0 && <View style={styles.headerCartBadge}>
-                
-            </View>}
-        <CIcon
-          type="AntDesign"
-          name="shoppingcart"
-          size={25}
-          style={[styles.headerCartButtonIcon]}
-        />
-      </TouchableOpacity>
+      <CText style={styles.headerRight}>
+      {rightTitle}
+    </CText>
     );
   };
 
@@ -111,7 +99,7 @@ const Header = props => {
         onPress={() => backPress()}>
         <CIcon
           type="MaterialIcons"
-          name="arrow-back"
+          name="left"
           color={theme.light.colors.backgroundColor}
           size={30}
         />
@@ -123,19 +111,12 @@ const Header = props => {
       style={[styles.headerStyle, transparent, headerTransparentStyle]}
       edges={['top']}>
       {ProgressiveImageHeader ? (
-        <ProgressiveImage
-          source={HeaderImg}
-          style={[styles.bgHeadeStyle, bgHeadeStyle]}
-          resizeMode="stretch">
-          <View>
-            <View style={[GlobalStyle.listItemActions]}>
-              {headerLeft ? backButton() : menuButton()}
-              <CText style={GlobalStyle.toggleViewText}>{headerTitle}</CText>
-              {headerRight && rightButton()}
-            </View>
-          </View>
-          {showCenterLogo && centerLogo()}
-        </ProgressiveImage>
+         <View style={[GlobalStyle.listItemActions]}>
+           {true ? backButton() : menuButton()}
+           {rightTextShow && rightText()}
+          
+         </View>
+       
       ) : (
         <View style={styles.subheaderView}>
           <View style={[GlobalStyle.listItemActions]}>
@@ -143,9 +124,8 @@ const Header = props => {
             <CText style={[GlobalStyle.toggleViewText, headerTitleStyle]}>
               {headerTitle}
             </CText>
-            {headerRight && cartButton()}
+            {/* {headerRight && rightButton()} */}
           </View>
-          {showCenterLogo && centerLogo()}
         </View>
       )}
     </SafeAreaView>
@@ -156,7 +136,7 @@ export default Header;
 
 const styles = StyleSheet.create({
   headerStyle: {
-    backgroundColor: theme.light.colors.backgroundColor,
+    backgroundColor: theme.light.colors.tertiary,
   },
   headerLogo: {
     flex: 1,
@@ -175,10 +155,24 @@ const styles = StyleSheet.create({
   },
 
   subheaderView: {
-    marginTop: 10,
-    paddingBottom:10,
-    marginHorizontal: 20,
-    backgroundColor: '#FFF',
+
+    // marginTop: 10,
+   paddingTop : 15,
+   marginTop:-28,
+    height:100,
+    // pa
+    backgroundColor: theme.light.colors.primary,
+
+  },
+  headerRight:{
+    flex:1,
+        fontSize: 17,
+        marginRight: 10,
+        fontFamily: theme.font.semiBold,
+        color: theme.light.colors.dark,
+        textAlign: 'right',
+        textDecorationLine: 'underline'
+
   },
   bgHeadeStyle: {
     width: width * 1,
