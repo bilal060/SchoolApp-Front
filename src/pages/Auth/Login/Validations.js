@@ -7,7 +7,7 @@ const scheme = Yup.object().shape({
 
     password: Yup.string()
         .required("Please enter your password.")
-        .min(8, "Password is too short - should be 8 chars minimum.")
+        .min(6, "Password is too short - should be 6 chars minimum.")
        ,
     matchPassword: Yup
         .string()

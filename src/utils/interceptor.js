@@ -23,6 +23,7 @@ const interceptor = () => {
     );
     axios.interceptors.response.use(
         function (response) {
+
             (async () => {
                 if(response?.headers?.token){
                     await _setDataToAsyncStorage(TOKEN, response?.headers?.token);

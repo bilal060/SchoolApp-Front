@@ -8,6 +8,8 @@ const initialState = {
     uuid: '',
     termAndConditions: {},
     currentLocation: {},
+    allStates:[],
+    allCities:[]
 };
 
 export default (state = initialState, action = {}) => {
@@ -28,6 +30,10 @@ export default (state = initialState, action = {}) => {
 
         case GLOBAL.CURRENT_LOCATION:
             return { ...state, currentLocation: action.data };
+            case GLOBAL.GET_STATES:
+                return { ...state, allStates: action.data}
+        case GLOBAL.GET_CITIES:
+            return { ...state, allCities: action.data}
         default:
             return state;
     }

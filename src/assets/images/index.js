@@ -33,6 +33,9 @@ import Class from './Class.png'
 import Eva from './Eva.png'
 
 
+import facialrecognition from './facial-recognition.png'
+
+
 
 
 import EditProfile from './EditProfile.png'
@@ -55,7 +58,7 @@ import Download from './Download.png'
 import Place from './place.png'
 import Octicons from './Octicons.png'
 import Chat from './chat.png'
-import Home from './Home.png'
+import Home from './home.png'
 
 import Filter from './Filter.png'
 import ServiceImg from './serciceImg.png'
@@ -76,6 +79,7 @@ export {
     BookImage,
     Download,
     Left,
+    facialrecognition,
     Celebrate,
     Event,
     Gallery,

@@ -67,6 +67,11 @@ const QrCode = ({navigation}) => {
         <CText style={Styles.headerSubHeading}>
           Scan your QR Code to mark your attendance.
         </CText>
+        {/* <QRCode
+          value={"HEl"}
+          size={200}
+          bgColor='black'
+          fgColor='white'/> */}
       </View>
     </Container>
   );

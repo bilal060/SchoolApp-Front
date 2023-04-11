@@ -185,6 +185,9 @@ export default StyleSheet.create({
     fontSize: 42,
     fontWeight: '600',
   },
+  underlineStyleHighLighted: {
+    borderBottomColor: themes['light'].colors.primary,
+  },
   confirmDetailText: {
     color: themes['light'].colors.dark,
     fontFamily: themes.font.regular,
@@ -213,7 +216,7 @@ export default StyleSheet.create({
     paddingHorizontal: 0,
   },
   buttonStyle: {
-    marginVertical: 30,
+    marginVertical: 10,
     width: width * 0.8,
     alignSelf:"center"
   },

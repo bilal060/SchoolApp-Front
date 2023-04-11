@@ -2,7 +2,7 @@ import * as React from "react";
 import {createStackNavigator} from "@react-navigation/stack";
 import { Calender, Ebook, Home, QrCode } from "../../pages/Protected";
 
-const Stack = createStackNavigator();
+const HomeStacks = createStackNavigator();
 
 const StackScreenOptions = {
     headerShown: false
@@ -10,13 +10,15 @@ const StackScreenOptions = {
 
 function HomeStack() {
     return (
-        <Stack.Navigator initialRouteName="home" screenOptions={StackScreenOptions}>
-            <Stack.Screen name="home" component={Home} />
-            <Stack.Screen name="QrCode" component={QrCode} />
-            <Stack.Screen name="Calender" component={Calender} />
-  <Stack.Screen name="EBook" component={Ebook} />
+        <>
+        <HomeStacks.Navigator initialRouteName="home" screenOptions={StackScreenOptions}>
+            <HomeStacks.Screen name="Home1" component={Home} />
+            <HomeStacks.Screen name="QrCode" component={QrCode} />
+            <HomeStacks.Screen name="Calender" component={Calender} />
+         <HomeStacks.Screen name="EBook" component={Ebook} />
 
-        </Stack.Navigator>
+        </HomeStacks.Navigator>
+        </>
     );
 }
 export default HomeStack;

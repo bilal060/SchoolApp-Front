@@ -13,9 +13,26 @@ import AuthStyle from '../Auth.style';
 import {themes} from '../../../theme/colors';
 import ToggleSwitch from '../../../components/cToggleSwitch/CToggleSwitch';
 
+import MaskInput, { Masks } from 'react-native-mask-input';
+
+
+
 function CForm(props) {
-  const {submit, loading, onForgotPress, selectedCountry, toggleCountryModal} =
-    props;
+  const {
+    submit,
+    loading,
+    onForgotPress,
+    selectedCity,
+    selectedState,
+    onStatePress,
+    selectedCountry,
+    toggleCountryModal,
+    onCityPress,
+    selectedCityError,
+    selectedStateError
+  } = props;
+
+  console.log('🚀 ~ file: Form.js:18 ~ CForm ~ selectedState:',  selectedState?.name);
 
   const form = useRef(null);
   const fullName = useRef(null);
@@ -25,13 +42,14 @@ function CForm(props) {
   const city = useRef(null);
   const dob = useRef(null);
   const sID = useRef(null);
+  const password = useRef(null);
+
 
   return (
     <Formik
       innerRef={form}
-      onSubmit={values => submit(values)}
+      onSubmit={(values) => submit(values)}
       initialValues={{}}
-
       validationSchema={Validations}>
       {({handleChange, values, handleSubmit, errors}) => {
         return (
@@ -90,33 +108,41 @@ function CForm(props) {
                   placeholder={'000-000-0000'}
                   value={values?.number}
                   onChangeText={handleChange('number')}
-
                   inputInnerContainerStyle={AuthStyle.inputInnerContainerStyle}
                   inputStyle={AuthStyle.inputstyle}
                   error={errors.number}
                   returnKeyType="next"
+                  inputKey="key"
                   onSubmitEditing={() => handleSubmit()}
                 />
+                
                 <CInput
                   ref={state}
                   // inputLabel={'Email_address'}
-                  placeholder={'State'}
-                  value={values.state}
-                  onChangeText={handleChange('state')}
-                  error={errors.state}
+                  placeholder={'States'}
+                  // value={selectedState ? selectedState?.name : ''}
+                  // onChangeText={handleChange('city')}
+                  error={selectedStateError}
+                  selectValue={selectedState}
                   sec
+                  onPress={onStatePress}
+                  type="view"
                   leftIconType="MaterialCommunityIcons"
                   returnKeyType="next"
-                  onSubmitEditing={() => city.current.focus()}
+                  onSubmitEditing={() => dob.current.focus()}
                 />
                 <CInput
                   ref={city}
                   // inputLabel={'Email_address'}
                   placeholder={'City'}
-                  value={values.city}
-                  onChangeText={handleChange('city')}
-                  error={errors.city}
+                  // value={selectedCity ? selectedCity?.name : ''}
+                  // onChangeText={handleChange('city')}
+                  error={selectedCityError}
                   sec
+                  selectValue={selectedCity}
+
+                  onPress={onCityPress}
+                  type="view"
                   leftIconType="MaterialCommunityIcons"
                   returnKeyType="next"
                   onSubmitEditing={() => dob.current.focus()}
@@ -129,6 +155,7 @@ function CForm(props) {
                   onChangeText={handleChange('dob')}
                   error={errors.dob}
                   sec
+                  mask={Masks.DATE_DDMMYYYY}
                   leftIconType="MaterialCommunityIcons"
                   returnKeyType="next"
                   onSubmitEditing={() => sID.current.focus()}
@@ -141,6 +168,18 @@ function CForm(props) {
                   onChangeText={handleChange('sID')}
                   error={errors.sID}
                   sec
+                  leftIconType="MaterialCommunityIcons"
+                  returnKeyType="next"
+                  onSubmitEditing={() => password.current.focus()}
+                />
+                 <CInput
+                  ref={password}
+                  // inputLabel={'Email_address'}
+                  placeholder={'Password'}
+                  value={values.password}
+                  onChangeText={handleChange('password')}
+                  error={errors.password}
+                  // sec
                   leftIconType="MaterialCommunityIcons"
                   returnKeyType="done"
                   onSubmitEditing={() => handleSubmit()}

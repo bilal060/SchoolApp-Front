@@ -9,15 +9,14 @@ const scheme = Yup.object().shape({
         number: Yup.string()
         
         .required("Phone number is required."),
-        state: Yup.string()
-        .required("Please select state"),
-        city: Yup.string()
-        .required("Please select city"),
+        
 
         dob: Yup.string()
         .required("Please select date of birth"),
         sID: Yup.string()
         .required("Please enter student id"),
+        password: Yup.string()
+        .required("Please enter Password"),
         
 });
 

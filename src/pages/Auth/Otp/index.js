@@ -16,8 +16,14 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 const {width, height} = Dimensions.get('screen');
 import OTPInputView from '@twotalltotems/react-native-otp-input';
 import GlobalStyle from '../../../assets/styling/GlobalStyle';
+import { otp_Verify } from '../../../redux/actions/Auth.action';
+import { handleSuccess } from '../../../utils/methods';
+import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 
 function Register({route}) {
+  console.log("🚀 ~ file: index.js:22 ~ Register ~ route:", route)
+  const {rep} = route?.params || {}
+  console.log("🚀 ~ file: index.js:22 ~ Register ~ route:", route)
   const navigation = useNavigation();
   const dispatch = useDispatch();
 const [code , setCode] = useState("")
@@ -26,7 +32,7 @@ const [error , setError] = useState("")
 
   const reduxState = useSelector(({auth, global}) => {
     return {
-      loading: auth.signUpLoading,
+      loading: auth.otpVerifyLoading,
     };
   });
   const headerProps = {
@@ -43,16 +49,22 @@ const [error , setError] = useState("")
   };
 
   const submit = async values => {
-
-      if(code === "2357"){
-        setError("")
-
-        navigation.navigate('Confirm');
-      } else {
-        setError("You enter valid code")
+      console.log('resresresres', route?.params);
+      const payload ={
+        email: route?.params?.email ,
+        otp :code
       }
+      dispatch(otp_Verify(payload , resp))
     // alert("sss")
   };
+  const resp = (response) => {
+    if(response){
+      handleSuccess("Otp Verified Successfully")
+      navigation.navigate('Authentication')
+    }
+    console.log("🚀 ~ file: index.js:56 ~ resp ~ res:", response)
+   
+  }
 
   return (
     <Container
@@ -78,27 +90,35 @@ const [error , setError] = useState("")
           ]}>
           Please enter code sent your email code will expire in
         </CText>
-        <CText
-          style={[
-            AuthStyle.cardHeaderSubTitle,
-            {textAlign: 'center', width: '75%'},
-          ]}>
-          29s
-        </CText>
+        <CountdownCircleTimer
+        
+        size={30}
+    isPlaying
+    strokeWidth={1}
+    duration={29}
+    colors={['#004777', '#F7B801', '#A30000', '#A30000']}
+    colorsTime={[29, 15, 8, 0]}
+  >
+    {({ remainingTime }) => <CText>{remainingTime}</CText>}
+  </CountdownCircleTimer>
       </View>
       <View>
         <OTPInputView
           codeInputFieldStyle={AuthStyle.codeInputFieldStyle}
           style={AuthStyle.otpInputView}
+          codeInputHighlightStyle={AuthStyle.underlineStyleHighLighted}
+
+          
           pinCount={4}
           code={code}
           onCodeChanged={(code) => {
             setCode(code)
         }}
         />
-       {error  && <CText style={{...GlobalStyle.errorTextStyle,}}>
+       {error  ? 
+       <CText style={{...GlobalStyle.errorTextStyle,}}>
         {error}
-      </CText>}
+      </CText> :  null}
       </View>
 
       <CButton

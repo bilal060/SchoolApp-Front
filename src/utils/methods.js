@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Platform, I18nManager } from "react-native";
 import Toast from "react-native-toast-message";
+import Snackbar from 'react-native-snackbar';
 
 export const get = (url) => {
     return axios.get(url);
@@ -28,35 +29,31 @@ export const handleCommon = (
     description = "",
     otherOptions
 ) => {
-    Toast.show({
-        type: type,
-        text1: title,
-        text2: description || "",
-        ...otherOptions,
+    Snackbar.show({
+        text: title,
+        textColor:"red",
+        duration: Snackbar.LENGTH_SHORT,
     });
 };
 
 export const handleError = (description = "", otherOptions) => {
-    Toast.show({
-        type: "error",
-        text1: "Error",
-        text2: description || "Something went wrong!",
-        topOffset: Platform.OS === "ios" ? 55 : 23,
-        ...otherOptions,
+    console.log("🚀 ~ file: methods.js:40 ~ handleError ~ description:", description)
+    Snackbar.show({
+        text: description || "Some Thing Went Wrong",
+        textColor:"red",
+        duration: Snackbar.LENGTH_LONG,
     });
 };
 
 export const handleSuccess = (
-    message = "",
+    message ,
     defaultDescription = "",
     otherOptions
 ) => {
-    Toast.show({
-        type: "success",
-        text1: "Successfully",
-        text2: message || "",
-        topOffset: Platform.OS === "ios" ? 55 : 15,
-        ...otherOptions,
+    Snackbar.show({
+        text: message,
+        textColor:"green",
+        duration: Snackbar.LENGTH_SHORT,
     });
 };
 

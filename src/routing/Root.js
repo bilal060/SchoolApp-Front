@@ -22,7 +22,7 @@ import {
   ProfileIcon,
 } from '../assets/images';
 import {ProgressiveImage} from '../components';
-import {Faq, Notification, Profile , Privacy, Calender} from '../pages/Protected';
+import {Faq, Notification, Profile , Privacy, Calender ,} from '../pages/Protected';
 import {navigate} from './Ref';
 import HomeStack from './Stacks/Home';
 import {useNavigation} from '@react-navigation/native';
@@ -43,10 +43,10 @@ export default function App() {
     let icon = '';
 
     switch (routeName) {
-      case 'Home':
+      case 'Home1':
         icon = selectedTab === routeName ? FocusedHome : Home;
         break;
-      case 'title2':
+      case 'Calender':
         icon = selectedTab === routeName ? FocusedCalender : Celender;
         break;
       case 'Notification':
@@ -111,13 +111,12 @@ export default function App() {
       )}
       tabBar={renderTabBar}>
       <CurvedBottomBar.Screen
-        name="Home"
+        name="Home1"
         position="LEFT"
-        initialRouteName="Home"
         component={() => <HomeStack />}
       />
       <CurvedBottomBar.Screen
-        name="title2"
+        name="Calender"
         component={() => <Calender />}
         position="LEFT"
       />

@@ -7,6 +7,8 @@ import Information from './Information'
 import Confirm from './Confirm'
 import Authentication from './Authentication'
 import FaceDetect from './Authentication/FaceDetect'
+import FaceVerify from './Authentication/FaceVerify'
+
 
 
 export {
@@ -19,5 +21,6 @@ export {
     Information,
     Confirm,
     Authentication,
-    FaceDetect
+    FaceDetect,
+    FaceVerify
 }

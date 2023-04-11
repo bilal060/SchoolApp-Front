@@ -24,9 +24,8 @@ const CInput = React.forwardRef((props, ref) => {
     inputInnerContainerStyle,
     inputLabel,
     inputLabelStyle,
-
     type,
-
+    textStyle,
     leftIconName,
     toggleLeftIconFunc,
     leftIconButtonStyle,
@@ -51,10 +50,12 @@ const CInput = React.forwardRef((props, ref) => {
     rightIconeColor,
     placeholder,
     onPress,
+    selectValue,
     countryView,
     disabled,
     inputStyle
   } = props;
+    console.log("🚀 ~ file: CInput.js:58 ~ CInput ~ value:", value)
 
   const renderLabel = () => {
     return (
@@ -120,9 +121,9 @@ const CInput = React.forwardRef((props, ref) => {
         <CText
           style={[
             {...GlobalStyle.inputTextStyle, ...textStyle},
-            !value && {color: themes['light'].colors.gray4},
+             {color: themes['light'].colors.dark},
           ]}>
-          {value ? value : placeholder}
+          {selectValue   ? selectValue?.name : placeholder}
         </CText>
       </TouchableOpacity>
     );

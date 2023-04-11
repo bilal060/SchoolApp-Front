@@ -14,6 +14,7 @@ import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics'
 import { Alert } from 'react-native/Libraries/Alert/Alert';
 import LocalAuthentication from 'react-native-local-authentication';
 import DeviceInfo from 'react-native-device-info';
+import Toast from 'react-native-toast-message';
 
 
 function Login({route}) {
@@ -35,21 +36,34 @@ function Login({route}) {
   };
 
   const submit = async values => {
-    if(values.email === "student1@yopmail.com"  && values.password === "11223344"){
-      
-      dispatch(login()) 
-    } else {
-      alert("Please Enter Valid Email Password")
-    }
+    console.log("🚀 ~ file: index.js:39 ~ submit ~ values:", values)
+    // if(values.email === "student1@yopmail.com"  && values.password === "11223344"){
+      const payload ={
+        email :"asadullahshykh4@yopmail.com",
+        password:"11223344"
+      }
+      dispatch(login(payload , resp)) 
+    // } else {
+    //   alert("Please Enter Valid Email Password")
+    // }
 
   };
+
+  const resp = (res) => {
+    if(res){
+      navigation.navigate("FaceVerify" , {res})
+    }
+   
+  }
   useEffect(async() => {
  
     rnBiometrics.isSensorAvailable()
   .then((resultObject) => {
     const { available, biometryType } = resultObject
+    console.log("🚀 ~ file: index.js:51 ~ .then ~ biometryType:", biometryType)
 
     if (available && biometryType === BiometryTypes.TouchID) {
+      console.log("🚀 ~ file: index.js:53 ~ .then ~ biometryType:", biometryType)
       console.log('TouchID is supported')
     } else if (available && biometryType === BiometryTypes.FaceID) {
       console.log('FaceID is supported' )
@@ -62,6 +76,10 @@ function Login({route}) {
 
  
 
+  }, []);
+
+  React.useEffect(() => {
+    
   }, []);
 
  

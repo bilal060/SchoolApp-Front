@@ -15,9 +15,10 @@ import { store } from './src/redux/store'
 import 'react-native-gesture-handler';
 import { navigationRef } from './src/routing/Ref';
 import { themes } from './src/theme/colors';
+import { interceptor } from './src/utils/interceptor';
 LogBox.ignoreAllLogs();
 
-
+interceptor()
 const theme = {
     colors: {
         background: themes.light.colors.tertiary,

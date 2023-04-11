@@ -5,6 +5,8 @@ import Auth from './src/routing/Auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCountries } from './src/redux/actions/Global.action'
 import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics'
+import Toast from 'react-native-toast-message';
+import Snackbar from 'react-native-snackbar'
 
 const App = () => {
   const rnBiometrics = new ReactNativeBiometrics({ allowDeviceCredentials: true  })
@@ -15,6 +17,7 @@ const App = () => {
   useEffect(() => {
     
       dispatch(getCountries());
+      // showToast()
 
   }, []);
   useEffect(async() => {
@@ -38,17 +41,25 @@ const App = () => {
   
   
 
+
+
   }, []);
   
-
+  // const showToast = () => {
+  //   Snackbar.show({
+  //     description: title,
+  //     textColor:"red",
+  //     duration: Snackbar.LENGTH_SHORT,
+  // });
+  // }
   const reduxState = useSelector(({auth, global}) => {
     return {
       isLoggIn: auth.isLoggedIn,
     };
   });
   return (
-      
-      !reduxState?.isLoggIn  ?  <Auth /> : <Root/>  
+      // reduxState?.isLoggIn ?  <Root /> : <Auth/>
+    <Auth />
   )
 }
 

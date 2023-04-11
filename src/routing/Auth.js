@@ -4,7 +4,8 @@ import {CLoading} from '../components';
 import {createStackNavigator} from '@react-navigation/stack';
 import {getValueIntoAsyncStorage} from '../utils/asyncStorage/Functions';
 import {WELCOME_SCREEN} from '../utils/asyncStorage/Constants';
-import {ChangePassword, Forgot, Login, Otp, Register , Information, Confirm, Authentication, FaceDetect} from '../pages/Auth';
+import {ChangePassword, Forgot, Login, Otp, Register , Information, Confirm, Authentication, FaceDetect, FaceVerify} from '../pages/Auth';
+import { Home, QrCode } from '../pages/Protected';
 
 export const Stack = createStackNavigator();
 
@@ -30,7 +31,7 @@ function Auth({initial}) {
 
   /** Layout */
   const Layout = initialRouteName => {
-    if (initialRouteName !== null) {
+    if (!initialRouteName !== null) {
       return (
         <Stack.Navigator
           initialRouteName={initialRouteName}
@@ -43,6 +44,12 @@ function Auth({initial}) {
           <Stack.Screen name="Confirm" component={Confirm} />
           <Stack.Screen name="Authentication" component={Authentication} />
           <Stack.Screen name="FaceDetect" component={FaceDetect} />
+          <Stack.Screen name="FaceVerify" component={FaceVerify} />
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="QrCode" component={QrCode} />
+
+
+
 
 
           <Stack.Screen name="ChangePassword" component={ChangePassword} />

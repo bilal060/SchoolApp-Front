@@ -7,7 +7,8 @@ import Styles from "./CountriesModal.style";
 
 function CountriesModal(props) {
 
-    const {onSelect} = props;
+    const {onSelect , data  , key} = props;
+    console.log("🚀 ~ file: CountriesModal.js:11 ~ CountriesModal ~ data:", data.filter((e)=> console.log('eeeeeeeeeeeeeeeeeeee', e)))
 
     const [searchText, updateSearchText] = useState('');
     const [filteredCountry, updateFilteredCountry] = useState([]);
@@ -21,35 +22,40 @@ function CountriesModal(props) {
     });
 
     useEffect(() => {
-        updateFilteredCountry(reduxState.data);
+        updateFilteredCountry(data);
         setTimeout(() => {
             setLoading(false)
         }, 2000)
     }, []);
 
     const handleChange = (val) => {
+        
         updateSearchText(val);
         let foundArray = [];
         if(val) {
-            foundArray = reduxState.data.filter((o) =>  o?.cioc?.toLowerCase().includes(val?.toLowerCase()) || o?.name?.common.toLowerCase().includes(val?.toLowerCase()));
+            foundArray = data.filter((o) =>  o?.name?.common ?   o?.cioc?.toLowerCase().includes(val?.toLowerCase()) || o?.name?.common.toLowerCase().includes(val?.toLowerCase()) : o?.name?.toLowerCase().includes(val?.toLowerCase())  ) 
+            
         } else {
-            foundArray = reduxState.data
+            foundArray = data
         }
         updateFilteredCountry(foundArray)
     };
 
     const renderItem = ({item, index}) => {
-        return item?.detail?.code ? <TouchableOpacity style={[Styles.listItem, index === 0 && Styles.lastListItem]} onPress={() => onSelect(item)}>
-            <View style={Styles.listItemIcon}>
+        console.log("🚀 ~ file: CountriesModal.js:42 ~ renderItem ~ item:", item)
+        return item ? 
+        <TouchableOpacity style={[Styles.listItem, index === 0 && Styles.lastListItem]} onPress={() => onSelect(item)}>
+            { item?.flags?.png && <View style={Styles.listItemIcon}>
                 <ProgressiveImage
                     source={{uri: item?.flags?.png}}
                     resizeMode={'contain'}
                     style={[Styles.listItemIconImage]}/>
-            </View>
-            <CText style={Styles.listItemText}> {item.name.common}</CText>
+            </View>}
+            <CText style={Styles.listItemText}> { item.name.common  || item?.name }</CText>
+           {item?.detail?.code &&
             <CText style={[Styles.listItemText, Styles.listItemLastText]}>
                {item?.detail?.code}
-            </CText>
+            </CText>}
         </TouchableOpacity> : null
 
     };

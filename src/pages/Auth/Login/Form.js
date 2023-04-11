@@ -52,7 +52,7 @@ function CForm(props) {
                   leftIconNAme="email"
                   leftIconeSize={20}
                   returnKeyType="next"
-                  onSubmitEditing={() => handleSubmit()}
+                  onSubmitEditing={() => password.current.focus()}
                 />
 
                 <CInput
@@ -64,7 +64,7 @@ function CForm(props) {
                   secureTextEntry={true}
                   error={errors.password}
                   returnKeyType="next"
-                  onSubmitEditing={() => cpassword.current.focus()}
+                  onSubmitEditing={() => handleSubmit()}
                   leftIconType="MaterialCommunityIcons"
                   leftIconColor={themes.light.colors.fontColor}
                   leftIconNAme="email"
@@ -75,7 +75,7 @@ function CForm(props) {
                   rightIconeSize={18}
                 />
               </View>
-              <View style={{marginTop:-25 , marginRight:40}}>
+              <View style={{marginTop:-25 , marginRight:'15%'}}>
                 <ToggleSwitch  size="small" label="Save my Information for next time" isOn={true} />
                 {/* <CText style={AuthStyle.continueText}>Or continue with</CText> */}
               </View>

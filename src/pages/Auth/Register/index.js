@@ -17,7 +17,7 @@ function Register({route}) {
   const reduxState = useSelector(({auth, global}) => {
     console.log("🚀 ~ file: index.js:18 ~ reduxState ~ reduxState:", reduxState)
     return {
-      loading: auth.signUpLoading,
+      loading: auth.regiterLoading,
       currentCountry: global.currentCountry,
       countries: global.countries,
     };
